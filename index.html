@@ -71,17 +71,12 @@ Este párrafo se leerá despacio a una velocidad de 80.
           </div>
 
           <div class="sidebar-content">
-            <!-- Speed Control -->
+            <!-- Speed Instructions -->
             <div class="control-group">
-              <label for="input-speed">
-                <span>Velocidad Base</span>
-                <span id="val-speed" class="badge">100 px/s</span>
-              </label>
-              <div class="slider-wrapper">
-                <button class="btn-icon decrease-speed" title="Disminuir velocidad"><i data-lucide="minus"></i></button>
-                <input type="range" id="input-speed" min="20" max="400" step="5" value="100">
-                <button class="btn-icon increase-speed" title="Aumentar velocidad"><i data-lucide="plus"></i></button>
-              </div>
+              <label>Control de Velocidad</label>
+              <p class="speed-instruction" style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem; line-height: 1.4;">
+                Utiliza marcadores en el texto como <code>[speed:100]</code> para ajustar la velocidad en tiempo real.
+              </p>
             </div>
 
             <!-- Font Size -->
@@ -222,12 +217,7 @@ Este párrafo se leerá despacio a una velocidad de 80.
           </div>
 
           <div class="hud-center">
-            <!-- Quick Speed Slider -->
-            <div class="hud-control">
-              <i data-lucide="zap" class="hud-icon"></i>
-              <input type="range" id="hud-speed" min="20" max="400" step="5" value="100" title="Ajustar velocidad base">
-              <span id="hud-val-speed">100</span>
-            </div>
+
 
             <!-- Play/Pause Big Button -->
             <button id="hud-btn-play" class="hud-btn-main" title="Reproducir / Pausar (Espacio)">
@@ -288,10 +278,7 @@ Este párrafo se leerá despacio a una velocidad de 80.
               <span class="kbd">Esc</span>
               <span class="desc">Salir al Editor / Volver al Teleprompter</span>
             </div>
-            <div class="shortcut-item">
-              <span class="kbd">↑</span> / <span class="kbd">↓</span>
-              <span class="desc">Aumentar / Disminuir velocidad base (+5 / -5)</span>
-            </div>
+
             <div class="shortcut-item">
               <span class="kbd">→</span> / <span class="kbd">←</span>
               <span class="desc">Aumentar / Disminuir tamaño de letra (+2 / -2)</span>

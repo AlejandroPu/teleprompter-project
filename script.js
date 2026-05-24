@@ -74,8 +74,6 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
   const selectGuide = document.getElementById('select-guide');
   
   // Sidebar sliders
-  const inputSpeed = document.getElementById('input-speed');
-  const valSpeed = document.getElementById('val-speed');
   const inputFontSize = document.getElementById('input-font-size');
   const valFontSize = document.getElementById('val-font-size');
   const inputMargin = document.getElementById('input-margin');
@@ -110,8 +108,6 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
   const hudBtnMirrorH = document.getElementById('hud-btn-mirror-h');
   const hudBtnMirrorV = document.getElementById('hud-btn-mirror-v');
   
-  const hudSpeedSlider = document.getElementById('hud-speed');
-  const hudValSpeed = document.getElementById('hud-val-speed');
   const hudFontSizeSlider = document.getElementById('hud-font-size');
   const hudValFontSize = document.getElementById('hud-val-font-size');
   const hudProgressBar = document.getElementById('hud-progress-bar');
@@ -145,10 +141,7 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
 
     // Set UI elements
     scriptInput.value = state.text;
-    inputSpeed.value = state.baseSpeed;
-    hudSpeedSlider.value = state.baseSpeed;
-    valSpeed.textContent = `${state.baseSpeed} px/s`;
-    hudValSpeed.textContent = state.baseSpeed;
+    
     
     inputFontSize.value = state.fontSize;
     hudFontSizeSlider.value = state.fontSize;
@@ -173,7 +166,6 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
 
   function saveSettings() {
     localStorage.setItem('tp_script', state.text);
-    localStorage.setItem('tp_base_speed', state.baseSpeed);
     localStorage.setItem('tp_font_size', state.fontSize);
     localStorage.setItem('tp_margin_width', state.marginWidth);
     localStorage.setItem('tp_font_family', state.fontFamily);
@@ -409,10 +401,6 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
     updateHudStats();
     hudMarkerSpeedInfo.classList.remove('visible');
     hudMarkerSpeedInfo.textContent = 'Marcador: Ninguno';
-    
-    // Reset HUD speed values
-    hudValSpeed.textContent = state.baseSpeed;
-    hudSpeedSlider.value = state.baseSpeed;
   }
 
   // The rendering frame loop
@@ -492,19 +480,12 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
         // Show alert in HUD
         hudMarkerSpeedInfo.textContent = `Marcador: [speed:${newSpeed}]`;
         hudMarkerSpeedInfo.classList.add('visible');
-        
-        // Quick pulse styling on speed display
-        hudValSpeed.textContent = `${newSpeed}`;
-        hudSpeedSlider.value = newSpeed;
       } else if (newSpeed === null && state.currentSpeed !== state.baseSpeed) {
         // Revert to base speed if no marker found before this line
         state.currentSpeed = state.baseSpeed;
         
         hudMarkerSpeedInfo.classList.remove('visible');
         hudMarkerSpeedInfo.textContent = 'Marcador: Ninguno';
-        
-        hudValSpeed.textContent = `${state.baseSpeed}`;
-        hudSpeedSlider.value = state.baseSpeed;
       }
     }
   }
@@ -594,8 +575,6 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
     editorScreen.classList.add('active');
     
     // Reload state slider syncs
-    inputSpeed.value = state.baseSpeed;
-    valSpeed.textContent = `${state.baseSpeed} px/s`;
     inputFontSize.value = state.fontSize;
     valFontSize.textContent = `${state.fontSize}px`;
     
@@ -669,43 +648,6 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
 
   // Launch Button
   btnStart.addEventListener('click', showPrompterScreen);
-
-  // Speed adjustments
-  inputSpeed.addEventListener('input', (e) => {
-    const val = parseInt(e.target.value);
-    state.baseSpeed = val;
-    state.currentSpeed = val;
-    valSpeed.textContent = `${val} px/s`;
-    hudSpeedSlider.value = val;
-    hudValSpeed.textContent = val;
-    saveSettings();
-  });
-
-  hudSpeedSlider.addEventListener('input', (e) => {
-    const val = parseInt(e.target.value);
-    state.baseSpeed = val;
-    state.currentSpeed = val;
-    hudValSpeed.textContent = val;
-    inputSpeed.value = val;
-    valSpeed.textContent = `${val} px/s`;
-    saveSettings();
-  });
-
-  document.querySelector('.decrease-speed').addEventListener('click', () => {
-    const step = 10;
-    let val = state.baseSpeed - step;
-    if (val < 20) val = 20;
-    inputSpeed.value = val;
-    inputSpeed.dispatchEvent(new Event('input'));
-  });
-
-  document.querySelector('.increase-speed').addEventListener('click', () => {
-    const step = 10;
-    let val = state.baseSpeed + step;
-    if (val > 400) val = 400;
-    inputSpeed.value = val;
-    inputSpeed.dispatchEvent(new Event('input'));
-  });
 
   // Font size adjustments
   inputFontSize.addEventListener('input', (e) => {
@@ -876,22 +818,6 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
           // If in editor, launch
           showPrompterScreen();
         }
-        break;
-        
-      case 'ArrowUp':
-        e.preventDefault();
-        // Speed up base speed
-        const speedUpVal = Math.min(state.baseSpeed + 10, 400);
-        hudSpeedSlider.value = speedUpVal;
-        hudSpeedSlider.dispatchEvent(new Event('input'));
-        break;
-        
-      case 'ArrowDown':
-        e.preventDefault();
-        // Speed down base speed
-        const speedDownVal = Math.max(state.baseSpeed - 10, 20);
-        hudSpeedSlider.value = speedDownVal;
-        hudSpeedSlider.dispatchEvent(new Event('input'));
         break;
         
       case 'ArrowRight':
