@@ -149,7 +149,7 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
     hudValFontSize.textContent = `${state.fontSize}px`;
     
     inputMargin.value = state.marginWidth;
-    valMargin.textContent = `${state.marginWidth}%`;
+    valMargin.value = state.marginWidth;
     
     selectFont.value = state.fontFamily;
     selectGuide.value = state.guideType;
@@ -692,10 +692,21 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
   inputMargin.addEventListener('input', (e) => {
     const val = parseInt(e.target.value);
     state.marginWidth = val;
-    valMargin.textContent = `${val}%`;
+    valMargin.value = val;
     updatePrompterStyles();
     calculateMaxScroll();
     saveSettings();
+  });
+
+  valMargin.addEventListener('input', (e) => {
+    const val = parseInt(e.target.value);
+    if (!isNaN(val) && val >= 5 && val <= 90) {
+      state.marginWidth = val;
+      inputMargin.value = val;
+      updatePrompterStyles();
+      calculateMaxScroll();
+      saveSettings();
+    }
   });
 
   // Font Family selector

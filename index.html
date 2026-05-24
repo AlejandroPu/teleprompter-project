@@ -95,11 +95,11 @@ Este párrafo se leerá despacio a una velocidad de 80.
             <!-- Margin Width -->
             <div class="control-group">
               <label for="input-margin">
-                <span>Ancho de Lectura</span>
-                <span id="val-margin" class="badge">60%</span>
+                <span>Ancho de Lectura (%)</span>
+                <input type="number" id="val-margin" class="badge input-number-badge" min="5" max="90" value="65">
               </label>
               <div class="slider-wrapper">
-                <input type="range" id="input-margin" min="30" max="95" step="5" value="65">
+                <input type="range" id="input-margin" min="5" max="90" step="1" value="65">
               </div>
             </div>
 
