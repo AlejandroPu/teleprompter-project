@@ -284,6 +284,40 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
       
       prompterText.appendChild(lineElement);
     });
+    
+    // End of Document Markers
+    const endSpacer = document.createElement('p');
+    endSpacer.className = 'line blank-line';
+    endSpacer.style.height = '2em';
+    prompterText.appendChild(endSpacer);
+    
+    const endDocLine = document.createElement('p');
+    endDocLine.className = 'line end-marker';
+    endDocLine.textContent = '>> End of Document <<';
+    endDocLine.style.textAlign = 'center';
+    endDocLine.style.opacity = '0.5';
+    prompterText.appendChild(endDocLine);
+    
+    const dashLine = document.createElement('p');
+    dashLine.className = 'line end-marker';
+    dashLine.textContent = '- - -';
+    dashLine.style.textAlign = 'center';
+    dashLine.style.opacity = '0.5';
+    prompterText.appendChild(dashLine);
+    
+    const dashLine2 = document.createElement('p');
+    dashLine2.className = 'line end-marker';
+    dashLine2.textContent = '- - -';
+    dashLine2.style.textAlign = 'center';
+    dashLine2.style.opacity = '0.5';
+    prompterText.appendChild(dashLine2);
+
+    const dashLine3 = document.createElement('p');
+    dashLine3.className = 'line end-marker';
+    dashLine3.textContent = '- - -';
+    dashLine3.style.textAlign = 'center';
+    dashLine3.style.opacity = '0.5';
+    prompterText.appendChild(dashLine3);
 
     // Update prompter custom styles
     updatePrompterStyles();
@@ -528,8 +562,16 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
   }
 
   // Handle manual scroll gestures (wheel)
+  let scrollTimeout = null;
+  let wasPlayingBeforeScroll = false;
+  
   prompterViewport.addEventListener('wheel', (e) => {
     e.preventDefault();
+    
+    if (!scrollTimeout) {
+      wasPlayingBeforeScroll = state.isScrolling;
+    }
+    
     pausePrompter();
     
     // Adjust scrollY manually
@@ -544,6 +586,17 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
     // Refresh intersection indicators
     checkIntersectionAndMarkers();
     updateHudStats();
+    
+    if (scrollTimeout) {
+      clearTimeout(scrollTimeout);
+    }
+    
+    scrollTimeout = setTimeout(() => {
+      scrollTimeout = null;
+      if (wasPlayingBeforeScroll) {
+        startPrompter();
+      }
+    }, 500);
   }, { passive: false });
 
   // ==========================================
