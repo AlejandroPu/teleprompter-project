@@ -245,6 +245,7 @@ body, html {
   display: grid;
   grid-template-columns: 1fr 340px;
   height: calc(100vh - 64px);
+  min-height: 0; /* Crucial para evitar que el flex container crezca fuera de la pantalla */
   overflow: hidden;
 }
 
@@ -346,9 +347,15 @@ body, html {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  scrollbar-width: thin; /* Compatibilidad Firefox */
+  scrollbar-color: var(--scrollbar-thumb) transparent; /* Compatibilidad Firefox */
 }
 
 /* Custom Scrollbar for sidebar and editor */
+#script-input {
+  scrollbar-width: thin; /* Compatibilidad Firefox */
+  scrollbar-color: var(--scrollbar-thumb) transparent; /* Compatibilidad Firefox */
+}
 .sidebar-content::-webkit-scrollbar,
 #script-input::-webkit-scrollbar {
   width: 8px;
