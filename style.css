@@ -578,7 +578,7 @@ input.input-number-badge::-webkit-outer-spin-button {
 }
 
 .prompter-text p {
-  margin-bottom: 1.5em;
+  margin-bottom: 0;
   font-weight: 500;
   transition: color 0.3s ease;
   word-break: break-word;
