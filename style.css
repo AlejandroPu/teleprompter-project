@@ -20,7 +20,7 @@
   --shadow-premium: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
   --glass-bg: rgba(10, 11, 16, 0.65);
   --glass-border: rgba(255, 255, 255, 0.06);
-  --scrollbar-thumb: rgba(255, 255, 255, 0.25);
+  --scrollbar-thumb: rgba(255, 255, 255, 0.45); /* Opacidad aumentada para visibilidad */
 
   /* Fonts */
   --font-interface: 'Outfit', 'Inter', sans-serif;
@@ -51,7 +51,7 @@
   --glass-bg: rgba(255, 255, 255, 0.8);
   --glass-border: rgba(0, 0, 0, 0.06);
   --shadow-premium: 0 12px 40px 0 rgba(0, 0, 0, 0.1);
-  --scrollbar-thumb: rgba(0, 0, 0, 0.25);
+  --scrollbar-thumb: rgba(0, 0, 0, 0.35); /* Opacidad aumentada para visibilidad */
 }
 
 .theme-contrast {
@@ -83,7 +83,7 @@
   --glass-bg: rgba(243, 235, 217, 0.85);
   --glass-border: rgba(67, 52, 34, 0.1);
   --shadow-premium: 0 10px 30px rgba(67, 52, 34, 0.08);
-  --scrollbar-thumb: rgba(67, 52, 34, 0.25);
+  --scrollbar-thumb: rgba(67, 52, 34, 0.45); /* Opacidad aumentada para visibilidad */
 }
 
 /* Reset and Global Styles */
@@ -245,6 +245,7 @@ body, html {
   display: grid;
   grid-template-columns: 1fr 340px;
   height: calc(100vh - 64px);
+  min-height: 0; /* Crucial para evitar que el flex container crezca fuera de la pantalla */
   overflow: hidden;
 }
 
@@ -336,22 +337,31 @@ body, html {
   display: flex;
   flex-direction: column;
   height: 100%;
+  min-height: 0; /* Permite que el flex child se encoja correctamente */
+  overflow: hidden; /* Evita que el contenedor crezca fuera de los límites */
 }
 
 .sidebar-content {
   padding: 24px;
   padding-bottom: 80px; /* Espacio extra al final para que no se corte el botón */
   overflow-y: auto;
+  min-height: 0; /* Permite al contenedor encogerse y activar el scrollbar */
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  scrollbar-width: thin; /* Compatibilidad Firefox */
+  scrollbar-color: var(--scrollbar-thumb) transparent; /* Compatibilidad Firefox */
 }
 
 /* Custom Scrollbar for sidebar and editor */
+#script-input {
+  scrollbar-width: thin; /* Compatibilidad Firefox */
+  scrollbar-color: var(--scrollbar-thumb) transparent; /* Compatibilidad Firefox */
+}
 .sidebar-content::-webkit-scrollbar,
 #script-input::-webkit-scrollbar {
-  width: 8px;
+  width: 10px; /* Aumentado de 8px a 10px para mayor visibilidad y clicabilidad */
 }
 .sidebar-content::-webkit-scrollbar-track,
 #script-input::-webkit-scrollbar-track {

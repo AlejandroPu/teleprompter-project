@@ -409,6 +409,10 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
     updateHudStats();
     hudMarkerSpeedInfo.classList.remove('visible');
     hudMarkerSpeedInfo.textContent = 'Marcador: Ninguno';
+    
+    // Reset HUD speed values
+    hudValSpeed.textContent = state.baseSpeed;
+    hudSpeedSlider.value = state.baseSpeed;
   }
 
   // The rendering frame loop
@@ -451,12 +455,15 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
     const lines = prompterText.querySelectorAll('.line');
     let currentActiveLine = null;
     
-    // Simple spatial scan to find the line overlapping guideY
+    // Find the last line that has crossed the guideY
     for (const line of lines) {
       const rect = line.getBoundingClientRect();
-      if (rect.top <= guideY && rect.bottom >= guideY) {
+      // Consider a line "active" if its top edge has crossed the guide.
+      // We add a small buffer (e.g. +10) for smoother transitions.
+      if (rect.top <= guideY + 10) {
         currentActiveLine = line;
-        break;
+      } else {
+        break; // lines are ordered top-to-bottom
       }
     }
     
@@ -468,22 +475,36 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
       currentActiveLine.classList.add('active-line');
       state.lastActiveLineElement = currentActiveLine;
       
-      // If this line has an inline speed marker, execute the speed change!
-      if (currentActiveLine.dataset.speed && currentActiveLine !== state.lastAppliedSpeedElement) {
-        state.lastAppliedSpeedElement = currentActiveLine;
-        const newSpeed = parseFloat(currentActiveLine.dataset.speed);
-        
-        if (!isNaN(newSpeed)) {
-          state.currentSpeed = newSpeed;
-          
-          // Show alert in HUD
-          hudMarkerSpeedInfo.textContent = `Marcador: [speed:${newSpeed}]`;
-          hudMarkerSpeedInfo.classList.add('visible');
-          
-          // Quick pulse styling on speed display
-          hudValSpeed.textContent = `${newSpeed}`;
-          hudSpeedSlider.value = newSpeed;
+      // Look backwards from the active line to find the most recent speed marker
+      let speedLine = currentActiveLine;
+      let newSpeed = null;
+      while (speedLine) {
+        if (speedLine.dataset.speed) {
+          newSpeed = parseFloat(speedLine.dataset.speed);
+          break;
         }
+        speedLine = speedLine.previousElementSibling;
+      }
+      
+      if (newSpeed !== null && newSpeed !== state.currentSpeed) {
+        state.currentSpeed = newSpeed;
+        
+        // Show alert in HUD
+        hudMarkerSpeedInfo.textContent = `Marcador: [speed:${newSpeed}]`;
+        hudMarkerSpeedInfo.classList.add('visible');
+        
+        // Quick pulse styling on speed display
+        hudValSpeed.textContent = `${newSpeed}`;
+        hudSpeedSlider.value = newSpeed;
+      } else if (newSpeed === null && state.currentSpeed !== state.baseSpeed) {
+        // Revert to base speed if no marker found before this line
+        state.currentSpeed = state.baseSpeed;
+        
+        hudMarkerSpeedInfo.classList.remove('visible');
+        hudMarkerSpeedInfo.textContent = 'Marcador: Ninguno';
+        
+        hudValSpeed.textContent = `${state.baseSpeed}`;
+        hudSpeedSlider.value = state.baseSpeed;
       }
     }
   }
