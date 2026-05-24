@@ -493,6 +493,29 @@ input.input-number-badge::-webkit-outer-spin-button {
   height: 16px;
 }
 
+/* GitHub Link Component */
+.github-link-container {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.github-link:hover {
+  color: var(--text-primary);
+  transform: scale(1.05);
+}
+.github-link i {
+  width: 16px;
+  height: 16px;
+}
+
 /* Theme presets grid */
 .theme-grid {
   display: grid;
