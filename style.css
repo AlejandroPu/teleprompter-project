@@ -611,12 +611,12 @@ input.input-number-badge::-webkit-outer-spin-button {
 .guide-speed-indicator {
   position: absolute;
   left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 0.9rem;
+  bottom: 100%;
+  margin-bottom: 5px;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--accent-color);
-  opacity: 0.6;
+  opacity: 0.8;
   font-family: 'JetBrains Mono', monospace;
   pointer-events: none;
 }
