@@ -1,5 +1,5 @@
 /* ==========================================================================
-   TELEPROMPTER PRO - CORE JAVASCRIPT
+   TELEPROMPTER PROJECT - CORE JAVASCRIPT
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Default script text if none in localStorage
   const DEFAULT_SCRIPT = `[speed:80]
-¡Bienvenido a Teleprompter Pro!
+¡Bienvenido a Teleprompter project!
 
 Este es un teleprompter web moderno y de alta definición diseñado para discursos, presentaciones y grabaciones de video impecables.
 
