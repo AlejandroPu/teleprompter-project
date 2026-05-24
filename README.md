@@ -1,4 +1,4 @@
-# Teleprompter Pro 🎙️
+# Teleprompter project 🎙️
 
 Un teleprompter web interactivo, moderno y de alto rendimiento, diseñado para oradores, creadores de contenido y presentaciones en vivo. Este proyecto fue creado con **Antigravity CLI**.
 
