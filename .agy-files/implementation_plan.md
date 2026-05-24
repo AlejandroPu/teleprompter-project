@@ -1,43 +1,40 @@
-# Plan para Construir un Teleprompter Web Premium
+# Teleprompter project - Implementation Plan
 
-Este plan detalla el diseño y la implementación de un teleprompter web interactivo, responsivo y de alto rendimiento. Contará con funciones profesionales como control de velocidad preciso, modo espejo (mirroring), marcadores de lectura visuales y **cambios de velocidad dinámicos incrustados en el texto**.
+## Historial de Cambios (Ya realizados)
+1. **Versión Inicial:** Creación del motor del teleprompter con HTML, CSS, JS. Implementación de scroll por `requestAnimationFrame` y marcadores dinámicos `[speed:X]`.
+2. **Corrección de Scrollbars:** Se forzó el contenedor flex a tener `min-height: 0` y se ajustó la barra de desplazamiento en Chrome/Edge.
+3. **Corrección de Detección de Velocidad:** Se mejoró el algoritmo de detección espacial de líneas para no saltarse etiquetas de velocidad en altas frecuencias de actualización.
+4. **Renombramiento:** Cambio oficial de nombre a "Teleprompter project" (Release v1.0.0).
 
----
+## Nuevos Objetivos (v1.1)
 
-## Puntos Clave del Diseño
+El usuario ha solicitado realizar tres mejoras principales, las cuales se implementarán en distintos Pull Requests.
 
-### 1. Control de Velocidad Dinámico mediante Marcadores en el Texto
-* El editor permitirá incrustar marcadores de velocidad entre corchetes, por ejemplo `[50]`, `[120]` (representando la velocidad).
-* El motor de renderizado analizará estos bloques y, cuando esa línea específica del texto alcance la guía de lectura (o una zona designada), la velocidad general de desplazamiento se ajustará automáticamente a ese nuevo valor.
-* Los marcadores se mostrarán de forma sutil en el modo de lectura (o podrán ocultarse completamente, según prefieras) para no interrumpir el flujo.
+### 1. Eliminar Controladores Manuales de Velocidad Base
+**Objetivo:** Simplificar la UI enfocando el control de velocidad en las etiquetas de texto.
+**Detalles:**
+- **[MODIFICAR]** `index.html`: Eliminar el slider de "Velocidad Base" de la barra lateral del editor y del HUD del teleprompter.
+- **[MODIFICAR]** `index.html`: En lugar del slider de la barra lateral, añadir un pequeño bloque de texto con instrucciones de cómo usar `[speed:X]`.
+- **[MODIFICAR]** `script.js`: Eliminar referencias a los sliders de velocidad, botones de `+` y `-`, y atajos de teclado de flechas arriba/abajo. El sistema usará una base interna de `100` a menos que haya una etiqueta.
 
-### 2. Panel de Control Flotante (Glassmorphism UI)
-* Un diseño oscuro de alta gama que flota sobre la pantalla y se oculta al iniciar la lectura para evitar distracciones.
-* Controles para:
-  * **Velocidad de desplazamiento base** (y anulación manual).
-  * **Tamaño de letra** y **Márgenes** (ancho del texto).
-  * **Modo Espejo** (Giro horizontal y opcionalmente vertical).
-  * **Selector de Temas y Fuente** (Inter, Roboto Mono, etc.).
+### 2. Mejorar Slider de Ancho de Lectura
+**Objetivo:** Mayor rango y precisión manual para el ancho.
+**Detalles:**
+- **[MODIFICAR]** `index.html`: Cambiar el slider `input-margin` para que su rango sea de `5` a `90`. Cambiar la etiqueta `<span id="val-margin">` por un campo numérico `<input type="number" id="input-margin-number">`.
+- **[MODIFICAR]** `script.js`: Sincronizar el slider visual con el input numérico para que al cambiar uno, cambie el otro en tiempo real y aplique el nuevo ancho al layout.
 
-### 3. Vista de Lectura y Guía Visual
-* **Marcador de Enfoque (Eye Guide)**: Una línea o área destacada en el centro de la pantalla que ayuda al lector a mantener la mirada fija.
-* **Barra de Progreso**.
+### 3. Indicador Visual de Velocidad Actual
+**Objetivo:** Proveer retroalimentación visual de la velocidad en el teleprompter.
+**Detalles:**
+- **[MODIFICAR]** `index.html`: Añadir un elemento span en el extremo izquierdo de `#eye-guide` para mostrar la velocidad actual.
+- **[MODIFICAR]** `style.css`: Dar estilo al indicador para que sea pequeño y discreto.
+- **[MODIFICAR]** `script.js`: Actualizar el valor de texto de este indicador siempre que se ejecute un cambio de velocidad o se vuelva a la base.
 
-### 4. Editor de Scripts
-* Zona para escribir, pegar texto y ajustar marcadores de velocidad.
-* Acceso rápido para alternar entre edición y modo teleprompter (doble clic en pantalla o tecla `Esc`).
-* **Persistencia Local**: El script y la configuración se guardarán automáticamente en `localStorage`.
+## User Review Required
+> [!IMPORTANT]
+> Confirmar que al quitar los sliders de velocidad manuales también se quitan los atajos de teclado (flechas arriba/abajo) para evitar conflictos.
 
----
-
-## Preguntas para el Usuario
-
-1. **Estructura del Proyecto**: ¿Prefieres que lo construyamos usando **Vite + Vanilla JS** (recomendado para un proyecto estructurado y modular) o un modelo simple de **archivos estáticos puros** (`index.html`, `style.css` y `script.js` sin proceso de compilación ni dependencias)?
-2. **Sintaxis de Velocidad**: Para los marcadores, ¿te parece bien usar un formato simple como `[100]` o prefieres algo más explícito como `[v:100]`?
-
----
-
-## Plan de Verificación
-1. **Validación de Velocidad Dinámica**: Insertar varios marcadores de velocidad en un texto largo y verificar que el cambio ocurre de forma fluida exactamente cuando el texto pasa por el punto de lectura.
-2. **Modo Espejo y Visuales**: Asegurar que los cálculos de intersección y posición de los marcadores sigan funcionando sin importar el tamaño de la fuente, el escalado, o si la pantalla está volteada.
-3. **Persistencia**: Verificar que tras recargar la página todo el progreso, el script y la velocidad se mantengan.
+## Plan de Pull Requests
+- **PR 1:** Eliminación de sliders de velocidad + Instrucciones de etiquetas.
+- **PR 2:** Actualización del control de Ancho de lectura.
+- **PR 3:** Indicador de velocidad en la línea guía.
