@@ -2,6 +2,8 @@
 
 Un teleprompter web interactivo, moderno y de alto rendimiento, diseñado para oradores, creadores de contenido y presentaciones en vivo. Este proyecto fue creado con **Antigravity CLI**.
 
+🔗 **[Prueba la aplicación en vivo aquí](https://alejandropu.github.io/teleprompter-project/)**
+
 ![Licencia](https://img.shields.io/badge/licencia-MIT-blue.svg)
 ![Tecnologías](https://img.shields.io/badge/tecnologías-HTML%20%7C%20CSS%20%7C%20JS-brightgreen.svg)
 
@@ -38,7 +40,7 @@ Un teleprompter web interactivo, moderno y de alto rendimiento, diseñado para o
 
 1.  Clona el repositorio:
     ```bash
-    git clone https://github.com/AlejandroPu/teleprompter.git
+    git clone https://github.com/AlejandroPu/teleprompter-project.git
     ```
 2.  Abre el archivo `index.html` directamente en tu navegador (Google Chrome o Microsoft Edge recomendados).
 3.  Escribe o pega tu texto en el editor, añade marcadores de velocidad si lo deseas y presiona **Iniciar Teleprompter**.
