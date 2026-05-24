@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,9 +27,9 @@
           <h1>Teleprompter<span>project</span></h1>
         </div>
         <div class="header-actions">
-          <button id="btn-shortcuts-helper" class="btn btn-secondary" title="Atajos de teclado">
+          <button id="btn-shortcuts-helper" class="btn btn-secondary" title="Keyboard Shortcuts">
             <i data-lucide="keyboard"></i>
-            <span>Atajos</span>
+            <span>Shortcuts</span>
           </button>
         </div>
       </header>
@@ -40,24 +40,24 @@
           <div class="panel-header">
             <div class="panel-title">
               <i data-lucide="file-text"></i>
-              <h2>Guion del Teleprompter</h2>
+              <h2>Teleprompter Script</h2>
             </div>
             <div class="editor-stats">
-              <span id="stat-words">0 palabras</span>
+              <span id="stat-words">0 words</span>
               <span class="stat-divider">|</span>
-              <span id="stat-time">0:00 min de lectura</span>
+              <span id="stat-time">0:00 min reading time</span>
             </div>
           </div>
           <div class="editor-container">
-            <textarea id="script-input" placeholder="Escribe o pega tu texto aquí... 
+            <textarea id="script-input" placeholder="Type or paste your text here... 
 
-Puedes cambiar la velocidad automáticamente insertando marcas como [speed:100] en medio del texto.
+You can change the speed automatically by inserting tags like [speed:100] in the text.
 
-Ejemplo:
+Example:
 [speed:80]
-Este párrafo se leerá despacio a una velocidad de 80.
+This paragraph will be read slowly at a speed of 80.
 [speed:180]
-¡Y este párrafo se desplazará mucho más rápido con velocidad de 180!"></textarea>
+And this paragraph will scroll much faster with a speed of 180!"></textarea>
           </div>
         </section>
 
@@ -66,49 +66,49 @@ Este párrafo se leerá despacio a una velocidad de 80.
           <div class="panel-header">
             <div class="panel-title">
               <i data-lucide="sliders"></i>
-              <h2>Configuración</h2>
+              <h2>Settings</h2>
             </div>
           </div>
 
           <div class="sidebar-content">
             <!-- Speed Instructions -->
             <div class="control-group">
-              <label>Control de Velocidad</label>
+              <label>Speed Control</label>
               <p class="speed-instruction" style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem; line-height: 1.4;">
-                Utiliza marcadores en el texto como <code>[speed:100]</code> para ajustar la velocidad en tiempo real.
+                Use tags in the text like <code>[speed:100]</code> to adjust the speed in real time.
               </p>
             </div>
 
             <!-- Font Size -->
             <div class="control-group">
               <label for="input-font-size">
-                <span>Tamaño de Letra</span>
+                <span>Font Size</span>
                 <span id="val-font-size" class="badge">48px</span>
               </label>
               <div class="slider-wrapper">
-                <button class="btn-icon decrease-font" title="Reducir letra"><i data-lucide="type"></i></button>
+                <button class="btn-icon decrease-font" title="Decrease font"><i data-lucide="type"></i></button>
                 <input type="range" id="input-font-size" min="24" max="120" step="2" value="48">
-                <button class="btn-icon increase-font" title="Agrandar letra"><i data-lucide="type" class="large-icon"></i></button>
+                <button class="btn-icon increase-font" title="Increase font"><i data-lucide="type" class="large-icon"></i></button>
               </div>
             </div>
 
             <!-- Line Spacing -->
             <div class="control-group">
               <label for="input-line-height">
-                <span>Interlineado</span>
+                <span>Line Spacing</span>
                 <span id="val-line-height" class="badge">1.5</span>
               </label>
               <div class="slider-wrapper">
-                <button class="btn-icon decrease-line-height" title="Reducir interlineado"><i data-lucide="minus"></i></button>
+                <button class="btn-icon decrease-line-height" title="Decrease spacing"><i data-lucide="minus"></i></button>
                 <input type="range" id="input-line-height" min="1.0" max="3.0" step="0.1" value="1.5">
-                <button class="btn-icon increase-line-height" title="Aumentar interlineado"><i data-lucide="plus"></i></button>
+                <button class="btn-icon increase-line-height" title="Increase spacing"><i data-lucide="plus"></i></button>
               </div>
             </div>
 
             <!-- Margin Width -->
             <div class="control-group">
               <label for="input-margin">
-                <span>Ancho de Lectura (%)</span>
+                <span>Reading Width (%)</span>
                 <input type="number" id="val-margin" class="badge input-number-badge" min="5" max="90" value="65">
               </label>
               <div class="slider-wrapper">
@@ -118,59 +118,59 @@ Este párrafo se leerá despacio a una velocidad de 80.
 
             <!-- Font Family -->
             <div class="control-group">
-              <label for="select-font">Fuentes de Lectura</label>
+              <label for="select-font">Reading Fonts</label>
               <select id="select-font">
                 <option value="font-inter">Inter (Sans-Serif)</option>
                 <option value="font-montserrat">Montserrat (Sleek)</option>
-                <option value="font-lora">Lora (Serif elegante)</option>
+                <option value="font-lora">Lora (Elegant Serif)</option>
                 <option value="font-courier">Courier Prime (Monospace)</option>
-                <option value="font-jetbrains">JetBrains Mono (Técnico)</option>
+                <option value="font-jetbrains">JetBrains Mono (Technical)</option>
               </select>
             </div>
 
             <!-- Mirror Settings -->
             <div class="control-group">
-              <label>Efecto Espejo (Hardware)</label>
+              <label>Mirror Effect (Hardware)</label>
               <div class="toggle-buttons">
                 <button id="btn-mirror-h" class="btn-toggle">
                   <i data-lucide="flip-horizontal"></i>
-                  <span>Espejo H</span>
+                  <span>Mirror H</span>
                 </button>
                 <button id="btn-mirror-v" class="btn-toggle">
                   <i data-lucide="flip-vertical"></i>
-                  <span>Espejo V</span>
+                  <span>Mirror V</span>
                 </button>
               </div>
             </div>
 
             <!-- Eye Guide Setting -->
             <div class="control-group">
-              <label for="select-guide">Guía de Enfoque (Línea)</label>
+              <label for="select-guide">Focus Guide (Line)</label>
               <select id="select-guide">
-                <option value="guide-line">Línea de color y Flechas (Fina)</option>
-                <option value="guide-band">Banda translúcida (Sombreado)</option>
-                <option value="guide-arrows">Solo flechas laterales</option>
-                <option value="guide-none">Sin guía visual</option>
+                <option value="guide-line">Color Line and Arrows (Thin)</option>
+                <option value="guide-band">Translucent Band (Shaded)</option>
+                <option value="guide-arrows">Only Side Arrows</option>
+                <option value="guide-none">No Visual Guide</option>
               </select>
             </div>
 
             <!-- Theme Presets -->
             <div class="control-group">
-              <label>Tema del Prompter</label>
+              <label>Prompter Theme</label>
               <div class="theme-grid">
-                <button class="theme-btn theme-btn-dark active" data-theme="dark" title="Modo Oscuro">
+                <button class="theme-btn theme-btn-dark active" data-theme="dark" title="Dark Mode">
                   <span class="dot" style="background:#0a0b10;"></span>
                   <span class="text" style="color:#ffffff;">Dark</span>
                 </button>
-                <button class="theme-btn theme-btn-light" data-theme="light" title="Modo Claro">
+                <button class="theme-btn theme-btn-light" data-theme="light" title="Light Mode">
                   <span class="dot" style="background:#f4f5f8;"></span>
                   <span class="text" style="color:#0a0b10;">Light</span>
                 </button>
-                <button class="theme-btn theme-btn-yellow" data-theme="contrast" title="Alto Contraste">
+                <button class="theme-btn theme-btn-yellow" data-theme="contrast" title="High Contrast">
                   <span class="dot" style="background:#000000; border: 1px solid #ffe853;"></span>
                   <span class="text" style="color:#ffe853;">Yellow</span>
                 </button>
-                <button class="theme-btn theme-btn-sepia" data-theme="sepia" title="Cálido / Sepia">
+                <button class="theme-btn theme-btn-sepia" data-theme="sepia" title="Warm / Sepia">
                   <span class="dot" style="background:#f3ebd9;"></span>
                   <span class="text" style="color:#433422;">Sepia</span>
                 </button>
@@ -180,14 +180,14 @@ Este párrafo se leerá despacio a una velocidad de 80.
             <!-- Launch Button -->
             <button id="btn-start" class="btn btn-primary btn-block">
               <i data-lucide="play-circle"></i>
-              <span>Iniciar Teleprompter</span>
+              <span>Start Teleprompter</span>
             </button>
 
             <!-- GitHub Link -->
             <div class="github-link-container">
               <a href="https://github.com/AlejandroPu/teleprompter-project" target="_blank" rel="noopener noreferrer" class="github-link">
                 <i data-lucide="github"></i>
-                <span>Proyecto en GitHub</span>
+                <span>GitHub Project</span>
               </a>
             </div>
           </div>
@@ -229,11 +229,11 @@ Este párrafo se leerá despacio a una velocidad de 80.
         </div>
         <div class="hud-inner">
           <div class="hud-left">
-            <button id="hud-btn-back" class="hud-btn" title="Volver al Editor (Esc)">
+            <button id="hud-btn-back" class="hud-btn" title="Back to Editor (Esc)">
               <i data-lucide="arrow-left"></i>
             </button>
             <div class="hud-divider"></div>
-            <button id="hud-btn-restart" class="hud-btn" title="Reiniciar (R)">
+            <button id="hud-btn-restart" class="hud-btn" title="Restart (R)">
               <i data-lucide="refresh-cw"></i>
             </button>
           </div>
@@ -242,29 +242,29 @@ Este párrafo se leerá despacio a una velocidad de 80.
 
 
             <!-- Play/Pause Big Button -->
-            <button id="hud-btn-play" class="hud-btn-main" title="Reproducir / Pausar (Espacio)">
+            <button id="hud-btn-play" class="hud-btn-main" title="Play / Pause (Space)">
               <i data-lucide="play" id="hud-play-icon"></i>
             </button>
 
             <!-- Quick Font Size Slider -->
             <div class="hud-control">
               <i data-lucide="type" class="hud-icon"></i>
-              <input type="range" id="hud-font-size" min="24" max="120" step="2" value="48" title="Ajustar tamaño de letra">
+              <input type="range" id="hud-font-size" min="24" max="120" step="2" value="48" title="Adjust font size">
               <span id="hud-val-font-size">48px</span>
             </div>
           </div>
 
           <div class="hud-right">
             <!-- Mirror HUD switches -->
-            <button id="hud-btn-mirror-h" class="hud-btn" title="Espejo Horizontal (H)">
+            <button id="hud-btn-mirror-h" class="hud-btn" title="Horizontal Mirror (H)">
               <i data-lucide="flip-horizontal"></i>
             </button>
-            <button id="hud-btn-mirror-v" class="hud-btn" title="Espejo Vertical (V)">
+            <button id="hud-btn-mirror-v" class="hud-btn" title="Vertical Mirror (V)">
               <i data-lucide="flip-vertical"></i>
             </button>
             <div class="hud-divider"></div>
             <!-- Fullscreen HUD toggler -->
-            <button id="hud-btn-fullscreen" class="hud-btn" title="Pantalla Completa (F)">
+            <button id="hud-btn-fullscreen" class="hud-btn" title="Fullscreen (F)">
               <i data-lucide="maximize"></i>
             </button>
           </div>
@@ -275,8 +275,8 @@ Este párrafo se leerá despacio a una velocidad de 80.
         </div>
         <div class="hud-time-indicators">
           <span id="hud-time-elapsed">00:00</span>
-          <span id="hud-marker-speed-info" class="hud-marker-speed-info">Marcador: Ninguno</span>
-          <span id="hud-time-remaining">Restante: 00:00</span>
+          <span id="hud-marker-speed-info" class="hud-marker-speed-info">Marker: None</span>
+          <span id="hud-time-remaining">Remaining: 00:00</span>
         </div>
       </div>
     </div>
@@ -287,44 +287,44 @@ Este párrafo se leerá despacio a una velocidad de 80.
     <div id="shortcuts-modal" class="modal-overlay">
       <div class="modal-content">
         <div class="modal-header">
-          <h3><i data-lucide="keyboard"></i> Atajos de Teclado</h3>
+          <h3><i data-lucide="keyboard"></i> Keyboard Shortcuts</h3>
           <button id="btn-close-modal" class="btn-close">&times;</button>
         </div>
         <div class="modal-body">
           <div class="shortcut-list">
             <div class="shortcut-item">
-              <span class="kbd">Espacio</span>
-              <span class="desc">Reproducir / Pausar el desplazamiento</span>
+              <span class="kbd">Space</span>
+              <span class="desc">Play / Pause scrolling</span>
             </div>
             <div class="shortcut-item">
               <span class="kbd">Esc</span>
-              <span class="desc">Salir al Editor / Volver al Teleprompter</span>
+              <span class="desc">Exit to Editor / Return to Teleprompter</span>
             </div>
 
             <div class="shortcut-item">
               <span class="kbd">→</span> / <span class="kbd">←</span>
-              <span class="desc">Aumentar / Disminuir tamaño de letra (+2 / -2)</span>
+              <span class="desc">Increase / Decrease font size (+2 / -2)</span>
             </div>
             <div class="shortcut-item">
               <span class="kbd">R</span>
-              <span class="desc">Reiniciar el teleprompter al inicio</span>
+              <span class="desc">Restart teleprompter to beginning</span>
             </div>
             <div class="shortcut-item">
               <span class="kbd">H</span>
-              <span class="desc">Alternar Espejo Horizontal</span>
+              <span class="desc">Toggle Horizontal Mirror</span>
             </div>
             <div class="shortcut-item">
               <span class="kbd">V</span>
-              <span class="desc">Alternar Espejo Vertical</span>
+              <span class="desc">Toggle Vertical Mirror</span>
             </div>
             <div class="shortcut-item">
               <span class="kbd">F</span>
-              <span class="desc">Alternar Pantalla Completa</span>
+              <span class="desc">Toggle Fullscreen</span>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button id="btn-close-modal-ok" class="btn btn-primary">Entendido</button>
+          <button id="btn-close-modal-ok" class="btn btn-primary">Got it</button>
         </div>
       </div>
     </div>

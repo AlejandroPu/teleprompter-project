@@ -1,46 +1,46 @@
 # Teleprompter project 🎙️
 
-Un teleprompter web interactivo, moderno y de alto rendimiento, diseñado para oradores, creadores de contenido y presentaciones en vivo. Este proyecto fue creado con **Antigravity CLI**.
+An interactive, modern, and high-performance web teleprompter designed for speakers, content creators, and live presentations. This project was created with **Antigravity CLI**.
 
-🔗 **[Prueba la aplicación en vivo aquí](https://alejandropu.github.io/teleprompter-project/)**
+🔗 **[Try the live application here](https://alejandropu.github.io/teleprompter-project/)**
 
-![Licencia](https://img.shields.io/badge/licencia-MIT-blue.svg)
-![Tecnologías](https://img.shields.io/badge/tecnologías-HTML%20%7C%20CSS%20%7C%20JS-brightgreen.svg)
-
----
-
-## ✨ Características Principales
-
-*   **Desplazamiento Ultra-Suave**: Bucle basado en `requestAnimationFrame` independiente de la tasa de refresco del monitor (60Hz, 120Hz, 144Hz).
-*   **Marcadores de Velocidad Dinámicos `[speed:X]`**: Escribe marcas en tu guion (ej. `[speed:120]`) para adaptar automáticamente la velocidad cuando el texto llegue a la guía de lectura.
-*   **Panel de Control Flotante (Glassmorphism)**: Interfaz translúcida y moderna con controles deslizantes rápidos.
-*   **Modo de Lectura Limpio**: El panel de control se oculta automáticamente tras 3 segundos de inactividad durante la reproducción para no generar distracciones.
-*   **Efecto Espejo Profesional**: Inversión horizontal y vertical del texto para compatibilidad con hardware de teleprompter físico.
-*   **Guía Visual de Enfoque**: Diferentes estilos de líneas guía (con flechas laterales o bandas de color) para no perder el hilo de la lectura.
-*   **Guardado Automático**: Guarda tu guion y preferencias directamente en el `localStorage` del navegador.
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Technologies](https://img.shields.io/badge/technologies-HTML%20%7C%20CSS%20%7C%20JS-brightgreen.svg)
 
 ---
 
-## ⌨️ Atajos de Teclado (Modo Lectura)
+## ✨ Key Features
 
-| Tecla | Acción |
+*   **Ultra-Smooth Scrolling**: Loop based on `requestAnimationFrame` independent of the monitor's refresh rate (60Hz, 120Hz, 144Hz).
+*   **Dynamic Speed Markers `[speed:X]`**: Write tags in your script (e.g. `[speed:120]`) to automatically adapt the speed when the text reaches the reading guide.
+*   **Floating Control Panel (Glassmorphism)**: Translucent and modern interface with quick slider controls.
+*   **Clean Reading Mode**: The control panel automatically hides after 3 seconds of inactivity during playback to avoid distractions.
+*   **Professional Mirror Effect**: Horizontal and vertical text inversion for compatibility with physical teleprompter hardware.
+*   **Visual Focus Guide**: Different styles of guide lines (with side arrows or color bands) so you don't lose track of your reading.
+*   **Auto-Save**: Saves your script and preferences directly in the browser's `localStorage`.
+
+---
+
+## ⌨️ Keyboard Shortcuts (Reading Mode)
+
+| Key | Action |
 | :--- | :--- |
-| **Espacio** | Reproducir / Pausar desplazamiento |
-| **Esc** | Alternar entre el Editor y el Teleprompter |
-| **R** / **r** | Reiniciar lectura al principio |
-| **↑** / **↓** | Aumentar / Disminuir velocidad base (+10 / -10 px/s) |
-| **→** / **←** | Aumentar / Disminuir tamaño de fuente (+4 / -4 px) |
-| **H** / **h** | Alternar giro Espejo Horizontal |
-| **V** / **v** | Alternar giro Espejo Vertical |
-| **F** / **f** | Alternar pantalla completa |
+| **Space** | Play / Pause scrolling |
+| **Esc** | Toggle between Editor and Teleprompter |
+| **R** / **r** | Restart reading to the beginning |
+| **↑** / **↓** | Increase / Decrease base speed (+10 / -10 px/s) |
+| **→** / **←** | Increase / Decrease font size (+4 / -4 px) |
+| **H** / **h** | Toggle Horizontal Mirror |
+| **V** / **v** | Toggle Vertical Mirror |
+| **F** / **f** | Toggle Fullscreen |
 
 ---
 
-## 🚀 ¿Cómo Empezar?
+## 🚀 Getting Started
 
-1.  Clona el repositorio:
+1.  Clone the repository:
     ```bash
     git clone https://github.com/AlejandroPu/teleprompter-project.git
     ```
-2.  Abre el archivo `index.html` directamente en tu navegador (Google Chrome o Microsoft Edge recomendados).
-3.  Escribe o pega tu texto en el editor, añade marcadores de velocidad si lo deseas y presiona **Iniciar Teleprompter**.
+2.  Open the `index.html` file directly in your browser (Google Chrome or Microsoft Edge recommended).
+3.  Type or paste your text in the editor, add speed markers if you want, and press **Start Teleprompter**.

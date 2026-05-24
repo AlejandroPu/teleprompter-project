@@ -1,51 +1,51 @@
-# Teleprompter project - Walkthrough y Registro de Cambios
+# Teleprompter project - Walkthrough and Changelog
 
-Este documento contiene el resumen de todos los cambios aplicados en el proyecto desde su creación.
-
----
-
-## Lanzamiento Inicial (v1.0.0)
-
-### 1. Motor Web Base (HTML/CSS/JS)
-- **Logro:** Se creó la aplicación de teleprompter desde cero en un único archivo HTML, su hoja de estilos y script JS separados.
-- **Detalles:** Soporta inserción de marcadores `[speed:X]`, estadísticas de lectura, estilos variables y temas de color.
-
-### 2. Corrección de Scrollbars y Diseño
-- **Problema:** En Google Chrome, las barras de desplazamiento laterales a veces colapsaban o desaparecían debido al motor Flexbox.
-- **Solución:** Se forzó el atributo `min-height: 0` en los contenedores Flex y se modificaron los estilos del pseudo-elemento `::-webkit-scrollbar` en `style.css` para hacer la barra más gruesa y opaca.
-
-### 3. Precisión en los Marcadores de Velocidad `[speed:X]`
-- **Problema:** Los marcadores colocados en líneas solas a veces eran ignorados (saltados) por la línea guía cuando la pantalla se desplazaba rápido o en monitores de alta frecuencia.
-- **Solución:** Se reescribió `checkIntersectionAndMarkers` en `script.js`. Ahora la aplicación memoriza la última línea cruzada y escanea hacia atrás de forma segura para aplicar siempre la última etiqueta activa, e incluso restaura las velocidades correctamente al desplazar el texto hacia atrás.
-
-### 4. Renombramiento Oficial
-- Se actualizó internamente el proyecto para usar el nombre "Teleprompter project" y se renombró el repositorio en GitHub.
+This document contains a summary of all changes applied to the project since its creation.
 
 ---
 
-## Actualización de Interfaz (v1.1.0)
-*(Actualmente en Pull Requests separados)*
+## Initial Release (v1.0.0)
 
-### PR #3: Eliminación de Control de Velocidad Manual
-- **Cambio:** Se eliminaron los sliders interactivos (tanto en el editor como en el HUD del prompter) que controlaban la velocidad base, así como los atajos de teclado `Up` y `Down`. 
-- **Razón:** Simplificar el uso promoviendo únicamente el control directo mediante las etiquetas de texto `[speed:X]`. Se agregaron instrucciones al respecto en la interfaz del editor.
+### 1. Base Web Engine (HTML/CSS/JS)
+- **Achievement:** The teleprompter application was built from scratch using a single HTML file, a stylesheet, and a separate JS script.
+- **Details:** Supports insertion of `[speed:X]` markers, reading statistics, variable styles, and color themes.
 
-### PR #4: Mejora en el Control de Ancho de Lectura
-- **Cambio:** Se cambió el control "Ancho de Lectura". Ahora permite un rango mayor (desde 5% hasta 90%) y el porcentaje se muestra en una pequeña caja de entrada numérica (`<input type="number">`).
-- **Razón:** Permitir a los usuarios ingresar el ancho exacto que deseen tecleando el número sin depender únicamente del arrastre del ratón.
+### 2. Scrollbars and Layout Fix
+- **Problem:** In Google Chrome, the side scrollbars would sometimes collapse or disappear due to the Flexbox engine.
+- **Solution:** The `min-height: 0` attribute was forced in Flex containers and the pseudo-element `::-webkit-scrollbar` was modified in `style.css` to make the bar thicker and opaque.
 
-### PR #5: Indicador de Velocidad en el Prompter
-- **Cambio:** Se añadió un pequeño texto al lado izquierdo de la línea central de lectura (`eye-guide`) que muestra en todo momento el número de la velocidad actual.
-- **Razón:** Ofrecer al usuario una retroalimentación en tiempo real para que sepa exactamente cuándo el sistema aplicó una de sus etiquetas de cambio de ritmo.
+### 3. Precision in Speed Markers `[speed:X]`
+- **Problem:** Markers placed on a single line were sometimes ignored (skipped) by the guide line when the screen scrolled fast or on high-refresh-rate monitors.
+- **Solution:** `checkIntersectionAndMarkers` in `script.js` was rewritten. Now the application remembers the last crossed line and safely scans backwards to always apply the last active tag, and even correctly restores speeds when scrolling the text backwards.
 
-### PR #6 & #7: Interlineado Uniforme
-- **Cambio:** Se añadió un control de `Line-Height` para el texto. Se modificó el CSS de los párrafos (`margin-bottom: 0`) para que la separación sea consistente dentro y fuera de un mismo bloque de texto. Las flechas de los input numéricos se ocultaron.
-- **Razón:** Dar un control preciso del espaciado vertical.
+### 4. Official Renaming
+- The project was internally updated to use the name "Teleprompter project" and the repository was renamed on GitHub.
 
-### PR #8: Documentación de Agentes
-- **Cambio:** Creación del archivo `AGENTS.md`.
-- **Razón:** Proveer contexto técnico y arquitectónico (render loop, parsing, motor espacial) para futuros Agentes de IA.
+---
 
-### PR #9, #10 & #11: Final de Documento y Reanudación Automática
-- **Cambio:** Se añadieron marcadores de fin de documento (`>> End of Document <<` y `- | - | -`) que se renderizan dinámicamente. El scroll con el ratón ahora detiene la lectura pero la reanuda automáticamente tras 0.5 segundos de soltar la rueda. El indicador numérico de velocidad se subió para evitar colisiones visuales con el compás central.
-- **Razón:** Mejorar la retroalimentación del fin de lectura y potenciar la usabilidad del scroll manual de retroceso.
+## Interface Update (v1.1.0)
+*(Currently in separate Pull Requests)*
+
+### PR #3: Manual Speed Control Removal
+- **Change:** Interactive sliders (both in the editor and the prompter HUD) that controlled the base speed were removed, as well as the `Up` and `Down` keyboard shortcuts.
+- **Reason:** Simplify usage by promoting only direct control via text tags `[speed:X]`. Instructions were added to the editor interface.
+
+### PR #4: Reading Width Control Improvement
+- **Change:** The "Reading Width" control was modified. It now allows a wider range (from 5% to 90%) and the percentage is displayed in a small numeric input box (`<input type="number">`).
+- **Reason:** Allow users to input the exact width they want by typing the number without relying solely on dragging with the mouse.
+
+### PR #5: Speed Indicator in Prompter
+- **Change:** A small text was added to the left side of the reading center line (`eye-guide`) that constantly displays the current speed number.
+- **Reason:** Provide the user with real-time feedback so they know exactly when the system applied one of their pacing tags.
+
+### PR #6 & #7: Uniform Line Spacing
+- **Change:** A `Line-Height` control for the text was added. The CSS of paragraphs (`margin-bottom: 0`) was modified so that the spacing is consistent inside and outside the same text block. Arrows of number inputs were hidden.
+- **Reason:** Provide precise control of vertical spacing.
+
+### PR #8: Agent Documentation
+- **Change:** Creation of the `AGENTS.md` file.
+- **Reason:** Provide technical and architectural context (render loop, parsing, spatial engine) for future AI Agents.
+
+### PR #9, #10 & #11: End of Document and Auto-Resume
+- **Change:** End of document markers (`>> End of Document <<` and `- | - | -`) were added and are rendered dynamically. Mouse scrolling now stops the reading but automatically resumes after 0.5 seconds of releasing the wheel. The numeric speed indicator was moved up to avoid visual collisions with the center guide.
+- **Reason:** Improve feedback for the end of reading and enhance the usability of manual backward scrolling.
