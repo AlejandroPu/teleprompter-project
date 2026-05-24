@@ -1,40 +1,40 @@
 # Teleprompter project - Implementation Plan
 
-## Historial de Cambios (Ya realizados)
-1. **Versión Inicial:** Creación del motor del teleprompter con HTML, CSS, JS. Implementación de scroll por `requestAnimationFrame` y marcadores dinámicos `[speed:X]`.
-2. **Corrección de Scrollbars:** Se forzó el contenedor flex a tener `min-height: 0` y se ajustó la barra de desplazamiento en Chrome/Edge.
-3. **Corrección de Detección de Velocidad:** Se mejoró el algoritmo de detección espacial de líneas para no saltarse etiquetas de velocidad en altas frecuencias de actualización.
-4. **Renombramiento:** Cambio oficial de nombre a "Teleprompter project" (Release v1.0.0).
+## Change History (Already completed)
+1. **Initial Release:** Creation of the teleprompter engine with HTML, CSS, JS. Implementation of `requestAnimationFrame` scrolling and dynamic `[speed:X]` markers.
+2. **Scrollbar Fix:** The flex container was forced to have `min-height: 0` and the scrollbar was adjusted in Chrome/Edge.
+3. **Speed Detection Fix:** The spatial line detection algorithm was improved to not skip speed tags at high refresh rates.
+4. **Renaming:** Official name change to "Teleprompter project" (Release v1.0.0).
 
-## Nuevos Objetivos (v1.1)
+## New Objectives (v1.1)
 
-El usuario ha solicitado realizar tres mejoras principales, las cuales se implementarán en distintos Pull Requests.
+The user has requested three main improvements, which will be implemented in separate Pull Requests.
 
-### 1. Eliminar Controladores Manuales de Velocidad Base
-**Objetivo:** Simplificar la UI enfocando el control de velocidad en las etiquetas de texto.
-**Detalles:**
-- **[MODIFICAR]** `index.html`: Eliminar el slider de "Velocidad Base" de la barra lateral del editor y del HUD del teleprompter.
-- **[MODIFICAR]** `index.html`: En lugar del slider de la barra lateral, añadir un pequeño bloque de texto con instrucciones de cómo usar `[speed:X]`.
-- **[MODIFICAR]** `script.js`: Eliminar referencias a los sliders de velocidad, botones de `+` y `-`, y atajos de teclado de flechas arriba/abajo. El sistema usará una base interna de `100` a menos que haya una etiqueta.
+### 1. Remove Manual Base Speed Controllers
+**Objective:** Simplify the UI by focusing speed control on text tags.
+**Details:**
+- **[MODIFY]** `index.html`: Remove the "Base Speed" slider from the editor sidebar and the teleprompter HUD.
+- **[MODIFY]** `index.html`: Instead of the sidebar slider, add a small text block with instructions on how to use `[speed:X]`.
+- **[MODIFY]** `script.js`: Remove references to speed sliders, `+` and `-` buttons, and up/down arrow keyboard shortcuts. The system will use an internal base of `100` unless there is a tag.
 
-### 2. Mejorar Slider de Ancho de Lectura
-**Objetivo:** Mayor rango y precisión manual para el ancho.
-**Detalles:**
-- **[MODIFICAR]** `index.html`: Cambiar el slider `input-margin` para que su rango sea de `5` a `90`. Cambiar la etiqueta `<span id="val-margin">` por un campo numérico `<input type="number" id="input-margin-number">`.
-- **[MODIFICAR]** `script.js`: Sincronizar el slider visual con el input numérico para que al cambiar uno, cambie el otro en tiempo real y aplique el nuevo ancho al layout.
+### 2. Improve Reading Width Slider
+**Objective:** Greater range and manual precision for the width.
+**Details:**
+- **[MODIFY]** `index.html`: Change the `input-margin` slider so its range is from `5` to `90`. Change the `<span id="val-margin">` label to a numeric field `<input type="number" id="input-margin-number">`.
+- **[MODIFY]** `script.js`: Synchronize the visual slider with the numeric input so that when one changes, the other changes in real time and applies the new width to the layout.
 
-### 3. Indicador Visual de Velocidad Actual
-**Objetivo:** Proveer retroalimentación visual de la velocidad en el teleprompter.
-**Detalles:**
-- **[MODIFICAR]** `index.html`: Añadir un elemento span en el extremo izquierdo de `#eye-guide` para mostrar la velocidad actual.
-- **[MODIFICAR]** `style.css`: Dar estilo al indicador para que sea pequeño y discreto.
-- **[MODIFICAR]** `script.js`: Actualizar el valor de texto de este indicador siempre que se ejecute un cambio de velocidad o se vuelva a la base.
+### 3. Visual Indicator of Current Speed
+**Objective:** Provide visual feedback of the speed in the teleprompter.
+**Details:**
+- **[MODIFY]** `index.html`: Add a span element on the far left of `#eye-guide` to show the current speed.
+- **[MODIFY]** `style.css`: Style the indicator to make it small and discreet.
+- **[MODIFY]** `script.js`: Update the text value of this indicator whenever a speed change is executed or it returns to the base.
 
 ## User Review Required
 > [!IMPORTANT]
-> Confirmar que al quitar los sliders de velocidad manuales también se quitan los atajos de teclado (flechas arriba/abajo) para evitar conflictos.
+> Confirm that removing the manual speed sliders also removes the keyboard shortcuts (up/down arrows) to avoid conflicts.
 
-## Plan de Pull Requests
-- **PR 1:** Eliminación de sliders de velocidad + Instrucciones de etiquetas.
-- **PR 2:** Actualización del control de Ancho de lectura.
-- **PR 3:** Indicador de velocidad en la línea guía.
+## Pull Request Plan
+- **PR 1:** Removal of speed sliders + Tag instructions.
+- **PR 2:** Reading Width control update.
+- **PR 3:** Speed indicator on the guide line.

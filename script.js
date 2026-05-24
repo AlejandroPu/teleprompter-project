@@ -40,25 +40,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Default script text if none in localStorage
   const DEFAULT_SCRIPT = `[speed:80]
-¡Bienvenido a Teleprompter project!
+Welcome to Teleprompter project!
 
-Este es un teleprompter web moderno y de alta definición diseñado para discursos, presentaciones y grabaciones de video impecables.
+This is a modern, high-definition web teleprompter designed for flawless speeches, presentations, and video recordings.
 
 [speed:120]
-Esta línea ahora se desplaza a una velocidad de 120, un poco más rápida. Puedes ver el marcador visual [v:120] a la izquierda (solo en modo lectura si así lo deseas, aunque aquí se muestra de manera informativa).
+This line is now scrolling at a speed of 120, a bit faster. You can see the visual speed marker [v:120] on the left if you wish to monitor your current pace.
 
 [speed:180]
-¡Atención! Ahora cruzamos el marcador de velocidad de 180. Esta parte del discurso se lee a un ritmo bastante rápido. Es ideal para secciones de alta energía o si tienes poco tiempo.
+Attention! We just crossed the 180 speed marker. This part of the speech is read at a fairly fast pace. It's ideal for high-energy sections or if you are short on time.
 
 [speed:60]
-Y volvemos a bajar el ritmo gradualmente a 60. Esto te permite hacer una pausa dramática, respirar y hablar con total tranquilidad y énfasis.
+And we gradually slow down back to 60. This allows you to make a dramatic pause, breathe, and speak with complete tranquility and emphasis.
 
 [speed:100]
-El sistema de teleprompter guarda automáticamente tu guion y tus configuraciones en el almacenamiento local de tu navegador.
+The teleprompter system automatically saves your script and settings in your browser's local storage.
 
-Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arriba] o [Abajo] para cambiar la velocidad base de forma manual, o la tecla [Esc] para regresar al editor.
+Try pressing the [Space] key to pause or resume, the [Up] or [Down] arrows to manually change the base speed, or the [Esc] key to return to the editor.
 
-¡Disfruta de tu presentación!`;
+Enjoy your presentation!`;
 
   // ==========================================
   // 2. DOM ELEMENTS
@@ -208,8 +208,8 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
     const cleanText = text.replace(/\[speed:\s*\d+(?:\.\d+)?\s*\]/g, '').trim();
     
     if (cleanText === '') {
-      statWords.textContent = '0 palabras';
-      statTime.textContent = '0:00 min de lectura';
+      statWords.textContent = '0 words';
+      statTime.textContent = '0:00 min reading time';
       return;
     }
     
@@ -222,8 +222,8 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
     const minutes = Math.floor(readingTimeSec / 60);
     const seconds = Math.floor(readingTimeSec % 60);
     
-    statWords.textContent = `${wordCount} palabra${wordCount !== 1 ? 's' : ''}`;
-    statTime.textContent = `${minutes}:${seconds.toString().padStart(2, '0')} min de lectura`;
+    statWords.textContent = `${wordCount} word${wordCount !== 1 ? 's' : ''}`;
+    statTime.textContent = `${minutes}:${seconds.toString().padStart(2, '0')} min reading time`;
   }
 
   // Parse raw text and build HTML elements for the prompter screen
@@ -444,7 +444,7 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
     // Reset HUD details
     updateHudStats();
     hudMarkerSpeedInfo.classList.remove('visible');
-    hudMarkerSpeedInfo.textContent = 'Marcador: Ninguno';
+    hudMarkerSpeedInfo.textContent = 'Marker: None';
     guideSpeedIndicator.textContent = state.baseSpeed;
   }
 
@@ -523,7 +523,7 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
         state.currentSpeed = newSpeed;
         
         // Show alert in HUD
-        hudMarkerSpeedInfo.textContent = `Marcador: [speed:${newSpeed}]`;
+        hudMarkerSpeedInfo.textContent = `Marker: [speed:${newSpeed}]`;
         hudMarkerSpeedInfo.classList.add('visible');
         guideSpeedIndicator.textContent = newSpeed;
       } else if (newSpeed === null && state.currentSpeed !== state.baseSpeed) {
@@ -531,7 +531,7 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
         state.currentSpeed = state.baseSpeed;
         
         hudMarkerSpeedInfo.classList.remove('visible');
-        hudMarkerSpeedInfo.textContent = 'Marcador: Ninguno';
+        hudMarkerSpeedInfo.textContent = 'Marker: None';
         guideSpeedIndicator.textContent = state.baseSpeed;
       }
     }
@@ -558,7 +558,7 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
     
     const remainingMin = Math.floor(remainingSeconds / 60);
     const remainingSec = Math.floor(remainingSeconds % 60);
-    hudTimeRemaining.textContent = `Restante: ${remainingMin.toString().padStart(2, '0')}:${remainingSec.toString().padStart(2, '0')}`;
+    hudTimeRemaining.textContent = `Remaining: ${remainingMin.toString().padStart(2, '0')}:${remainingSec.toString().padStart(2, '0')}`;
   }
 
   // Handle manual scroll gestures (wheel)
