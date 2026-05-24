@@ -300,21 +300,21 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
     
     const dashLine = document.createElement('p');
     dashLine.className = 'line end-marker';
-    dashLine.textContent = '- - -';
+    dashLine.textContent = '- | - | -';
     dashLine.style.textAlign = 'center';
     dashLine.style.opacity = '0.5';
     prompterText.appendChild(dashLine);
     
     const dashLine2 = document.createElement('p');
     dashLine2.className = 'line end-marker';
-    dashLine2.textContent = '- - -';
+    dashLine2.textContent = '- | - | -';
     dashLine2.style.textAlign = 'center';
     dashLine2.style.opacity = '0.5';
     prompterText.appendChild(dashLine2);
 
     const dashLine3 = document.createElement('p');
     dashLine3.className = 'line end-marker';
-    dashLine3.textContent = '- - -';
+    dashLine3.textContent = '- | - | -';
     dashLine3.style.textAlign = 'center';
     dashLine3.style.opacity = '0.5';
     prompterText.appendChild(dashLine3);
