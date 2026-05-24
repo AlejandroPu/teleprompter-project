@@ -212,10 +212,12 @@ input.input-number-badge {
   background: var(--input-bg);
   border: 1px solid var(--input-border);
   border-radius: 4px;
+  -moz-appearance: textfield;
 }
 input.input-number-badge::-webkit-inner-spin-button,
 input.input-number-badge::-webkit-outer-spin-button {
-  opacity: 1;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* 3. EDITOR SCREEN STYLING */
@@ -565,7 +567,7 @@ input.input-number-badge::-webkit-outer-spin-button {
   font-size: var(--prompter-font-size);
   text-align: var(--prompter-text-align);
   color: var(--text-primary);
-  line-height: 1.5;
+  line-height: var(--prompter-line-height, 1.5);
   user-select: none;
   will-change: transform;
   transform: translateY(0);
