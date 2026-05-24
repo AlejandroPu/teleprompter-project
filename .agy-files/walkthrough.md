@@ -37,3 +37,15 @@ Este documento contiene el resumen de todos los cambios aplicados en el proyecto
 ### PR #5: Indicador de Velocidad en el Prompter
 - **Cambio:** Se añadió un pequeño texto al lado izquierdo de la línea central de lectura (`eye-guide`) que muestra en todo momento el número de la velocidad actual.
 - **Razón:** Ofrecer al usuario una retroalimentación en tiempo real para que sepa exactamente cuándo el sistema aplicó una de sus etiquetas de cambio de ritmo.
+
+### PR #6 & #7: Interlineado Uniforme
+- **Cambio:** Se añadió un control de `Line-Height` para el texto. Se modificó el CSS de los párrafos (`margin-bottom: 0`) para que la separación sea consistente dentro y fuera de un mismo bloque de texto. Las flechas de los input numéricos se ocultaron.
+- **Razón:** Dar un control preciso del espaciado vertical.
+
+### PR #8: Documentación de Agentes
+- **Cambio:** Creación del archivo `AGENTS.md`.
+- **Razón:** Proveer contexto técnico y arquitectónico (render loop, parsing, motor espacial) para futuros Agentes de IA.
+
+### PR #9, #10 & #11: Final de Documento y Reanudación Automática
+- **Cambio:** Se añadieron marcadores de fin de documento (`>> End of Document <<` y `- | - | -`) que se renderizan dinámicamente. El scroll con el ratón ahora detiene la lectura pero la reanuda automáticamente tras 0.5 segundos de soltar la rueda. El indicador numérico de velocidad se subió para evitar colisiones visuales con el compás central.
+- **Razón:** Mejorar la retroalimentación del fin de lectura y potenciar la usabilidad del scroll manual de retroceso.
