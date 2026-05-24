@@ -95,6 +95,7 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
   const prompterTextContainer = document.getElementById('prompter-text-container');
   const prompterText = document.getElementById('prompter-text');
   const eyeGuide = document.getElementById('eye-guide');
+  const guideSpeedIndicator = document.getElementById('guide-speed-indicator');
   const countdownOverlay = document.getElementById('countdown-overlay');
   const countdownNumber = document.getElementById('countdown-number');
 
@@ -401,6 +402,7 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
     updateHudStats();
     hudMarkerSpeedInfo.classList.remove('visible');
     hudMarkerSpeedInfo.textContent = 'Marcador: Ninguno';
+    guideSpeedIndicator.textContent = state.baseSpeed;
   }
 
   // The rendering frame loop
@@ -480,12 +482,14 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
         // Show alert in HUD
         hudMarkerSpeedInfo.textContent = `Marcador: [speed:${newSpeed}]`;
         hudMarkerSpeedInfo.classList.add('visible');
+        guideSpeedIndicator.textContent = newSpeed;
       } else if (newSpeed === null && state.currentSpeed !== state.baseSpeed) {
         // Revert to base speed if no marker found before this line
         state.currentSpeed = state.baseSpeed;
         
         hudMarkerSpeedInfo.classList.remove('visible');
         hudMarkerSpeedInfo.textContent = 'Marcador: Ninguno';
+        guideSpeedIndicator.textContent = state.baseSpeed;
       }
     }
   }

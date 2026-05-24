@@ -606,6 +606,19 @@ input.input-number-badge::-webkit-outer-spin-button {
 }
 
 /* Eye Guide Overlay styles */
+.guide-speed-indicator {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent-color);
+  opacity: 0.6;
+  font-family: 'JetBrains Mono', monospace;
+  pointer-events: none;
+}
+
 .eye-guide {
   position: absolute;
   left: 0;
