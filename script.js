@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     baseSpeed: 100,      // Pixels per second
     currentSpeed: 100,   // Active speed (can be modified by speed markers)
     fontSize: 48,        // Pixels
+    lineHeight: 1.5,
     marginWidth: 65,     // Percentage of viewport width
     fontFamily: 'font-inter',
     mirrorH: false,
@@ -76,6 +77,8 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
   // Sidebar sliders
   const inputFontSize = document.getElementById('input-font-size');
   const valFontSize = document.getElementById('val-font-size');
+  const inputLineHeight = document.getElementById('input-line-height');
+  const valLineHeight = document.getElementById('val-line-height');
   const inputMargin = document.getElementById('input-margin');
   const valMargin = document.getElementById('val-margin');
   
@@ -133,6 +136,7 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
     state.baseSpeed = parseInt(localStorage.getItem('tp_base_speed')) || 100;
     state.currentSpeed = state.baseSpeed;
     state.fontSize = parseInt(localStorage.getItem('tp_font_size')) || 48;
+    state.lineHeight = parseFloat(localStorage.getItem('tp_line_height')) || 1.5;
     state.marginWidth = parseInt(localStorage.getItem('tp_margin_width')) || 65;
     state.fontFamily = localStorage.getItem('tp_font_family') || 'font-inter';
     state.mirrorH = localStorage.getItem('tp_mirror_h') === 'true';
@@ -148,6 +152,9 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
     hudFontSizeSlider.value = state.fontSize;
     valFontSize.textContent = `${state.fontSize}px`;
     hudValFontSize.textContent = `${state.fontSize}px`;
+    
+    inputLineHeight.value = state.lineHeight;
+    valLineHeight.textContent = state.lineHeight.toFixed(1);
     
     inputMargin.value = state.marginWidth;
     valMargin.value = state.marginWidth;
@@ -168,6 +175,7 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
   function saveSettings() {
     localStorage.setItem('tp_script', state.text);
     localStorage.setItem('tp_font_size', state.fontSize);
+    localStorage.setItem('tp_line_height', state.lineHeight);
     localStorage.setItem('tp_margin_width', state.marginWidth);
     localStorage.setItem('tp_font_family', state.fontFamily);
     localStorage.setItem('tp_mirror_h', state.mirrorH);
@@ -283,6 +291,7 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
 
   function updatePrompterStyles() {
     document.documentElement.style.setProperty('--prompter-font-size', `${state.fontSize}px`);
+    document.documentElement.style.setProperty('--prompter-line-height', state.lineHeight);
     document.documentElement.style.setProperty('--prompter-margin-width', `${state.marginWidth}%`);
     
     // Change font family classes
@@ -581,6 +590,8 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
     // Reload state slider syncs
     inputFontSize.value = state.fontSize;
     valFontSize.textContent = `${state.fontSize}px`;
+    inputLineHeight.value = state.lineHeight;
+    valLineHeight.textContent = state.lineHeight.toFixed(1);
     
     // Restore header elements
     calculateStats();
@@ -685,11 +696,37 @@ Prueba a presionar la tecla [Espacio] para pausar o reanudar, las flechas [Arrib
   });
 
   document.querySelector('.increase-font').addEventListener('click', () => {
-    const step = 4;
+    const step = 2;
     let val = state.fontSize + step;
     if (val > 120) val = 120;
     inputFontSize.value = val;
     inputFontSize.dispatchEvent(new Event('input'));
+  });
+
+  // Line Height adjustments
+  inputLineHeight.addEventListener('input', (e) => {
+    const val = parseFloat(e.target.value);
+    state.lineHeight = val;
+    valLineHeight.textContent = val.toFixed(1);
+    updatePrompterStyles();
+    calculateMaxScroll();
+    saveSettings();
+  });
+
+  document.querySelector('.decrease-line-height').addEventListener('click', () => {
+    const step = 0.1;
+    let val = state.lineHeight - step;
+    if (val < 1.0) val = 1.0;
+    inputLineHeight.value = val.toFixed(1);
+    inputLineHeight.dispatchEvent(new Event('input'));
+  });
+
+  document.querySelector('.increase-line-height').addEventListener('click', () => {
+    const step = 0.1;
+    let val = state.lineHeight + step;
+    if (val > 3.0) val = 3.0;
+    inputLineHeight.value = val.toFixed(1);
+    inputLineHeight.dispatchEvent(new Event('input'));
   });
 
   // Margin adjustment
